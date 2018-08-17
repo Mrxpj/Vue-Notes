@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<!-- 单个复选框，绑定到布尔值 -->
+	<div id="example1">
+		<input type="checkbox" id="checkbox" v-model="checked">
+		{{ checked }}
+	</div>
+<!-- 多个复选框，绑定到同一个数组 -->
+	<div id="example2">
+		<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  		<label for="jack">Jack</label>
+  		<input type="checkbox" id="john" value="John" v-model="checkedNames">
+  		<label for="john">John</label>
+  		<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  		<label for="mike">Mike</label>
+  		<br>
+  		<span>Checked names: {{ checkedNames }}</span>
+	</div>
+</body>
+</html>
+<script>
+	new Vue({
+		el: '#example1',
+		data: {
+			checked: false
+		}
+	})
+
+	new Vue({
+		el: '#example2',
+		data: {
+			checkedNames: []
+		}
+	})
+</script>

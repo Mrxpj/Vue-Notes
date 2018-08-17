@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-on</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="example1">
+		<button v-on:click="say('hi')">Say hi</button>
+		<button v-on:click="say('what')">Say what</button>
+	</div>
+	<div id="example2">
+		<button v-on:click="warn('Form cannot be submitted yet.',$event)">Submit</button>
+	</div>
+</body>
+</html>
+<script>
+	new Vue({
+		el: '#example1',
+		methods: {
+			say: function(message) {
+				alert(message)
+			}
+		}
+	})
+
+	new Vue({
+		el: '#example2',
+		methods: {
+			warn: function (message, event) {
+			if (event) event.preventDefault()//取消事件的默认动作。即组织表单提交
+				alert(message)
+			}
+		}
+	})
+</script>

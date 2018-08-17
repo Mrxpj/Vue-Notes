@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>列表的进入与离开的过渡</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<style>
+		.list-item {
+		  display: inline-block;
+		  margin-right: 10px;
+		}
+		.list-enter-active, .list-leave-active {
+		  transition: all 1s;
+		}
+		.list-enter, .list-leave-to
+		/* .list-leave-active for below version 2.1.8 */ {
+		  	opacity: 0;
+		  	transform: translateY(30px);
+		}
+	</style>
+</head>
+<body>
+	<div id="list-demo" class="demo">
+  		<button v-on:click="add">Add</button>
+  		<button v-on:click="remove">Remove</button>
+  		<transition-group name="list" tag="p">
+    	<span v-for="item in items" v-bind:key="item" class="list-item">
+     		{{ item }}
+    	</span>
+  		</transition-group>
+	</div>
+</body>
+</html>
+<script>
+	new Vue({
+		  el: '#list-demo',
+		  data: {
+		    items: [1,2,3,4,5,6,7,8,9],
+		    nextNum: 10
+		  },
+		  methods: {
+		    	randomIndex: function () {
+		     	return Math.floor(Math.random() * this.items.length)
+		    	},
+		    add: function () {
+		      	this.items.splice(this.randomIndex(), 0, this.nextNum++)
+		    },
+		    remove: function () {
+		      	this.items.splice(this.randomIndex(), 1)
+		    },
+		  }
+	})
+	// randomIndex()产生随机的索引，splice(添加/删除的位置,删除的数量(0表示不删除),需要添加的项)
+</script>

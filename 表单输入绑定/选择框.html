@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<!-- 单选时 -->
+	<div id="example1">
+  		<select v-model="selected">
+    		<option disabled value="">请选择</option>
+   			<option>A</option>
+    		<option>B</option>
+    		<option>C</option>
+  		</select>
+  		<span>Selected: {{ selected }}</span>
+	</div>
+	<!-- 如果 v-model 表达式的初始值未能匹配任何选项，<select> 元素将被渲染为“未选中”状态。在 iOS 中，这会使用户无法选择第一个选项。因为这样的情况下，iOS 不会触发 change 事件。因此，更推荐像上面这样提供一个值为空的禁用选项。 -->
+	<br>
+
+	<!-- 多选时 -->
+	<div id="example2">
+ 		<select v-model="selected" multiple style="width: 50px;">
+    		<option>A</option>
+    		<option>B</option>
+    		<option>C</option>
+  		</select>
+  		<br>
+  		<span>Selected: {{ selected }}</span>
+	</div>
+	<br>
+
+	<!-- 用 v-for 渲染的动态选项 -->
+	<div id="example3">
+		<select v-model="selected">
+ 			<option v-for="option in options" v-bind:value="option.value">
+    			{{ option.text }}
+  			</option>
+		</select>
+		<span>Selected: {{ selected }}</span>
+	</div>
+</body>
+</html>
+<script>
+	new Vue({
+		el: '#example1',
+		data: {
+			selected: ''
+		}
+	})
+
+	new Vue({
+		el: '#example2',
+		data: {
+			selected: []
+		}
+	})
+
+	new Vue({
+		el: '#example3',
+		data: {
+			selected: 'A',
+			options: [
+				{ text: 'One', value: 'A'},
+				{ text: 'Two', value: 'B'},
+				{ text: 'Three', value: 'C'},
+			]
+		}
+	})
+</script>

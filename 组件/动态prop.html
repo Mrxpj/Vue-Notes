@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态prop</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="prop-example">
+		<input type="text" v-model="parentMsg">
+		<br>
+		<child v-bind:my-message="parentMsg"></child>
+	</div>
+	<!-- <div id="prop-example2">
+		<todo-item v-bind="todo"></todo-item>
+	</div> -->
+</body>
+</html>
+<script>
+	Vue.component('child',{
+		props: ['myMessage'],
+		template: '<span>{{ myMessage }}</span>'
+	})
+	new Vue({
+		el: '#prop-example',
+		data: {
+			parentMsg: 'Message from par'
+		}
+	})
+	//动态地将 prop 绑定到父组件的数据。每当父组件的数据变化时，该变化也会传导给子组件
+
+
+	Vue.component('todo-item',{
+		props: ['todo'],
+		template: '<h1>{{ todo }}</h1>'
+	})
+
+	new Vue({
+		el: '#example',
+		data: {
+			todo: {
+				text: 'Learn Vue',
+				isComplete: true
+			}
+		}
+	})
+	/*把一个对象的所有属性作为 prop 进行传递，
+	可以使用不带任何参数的 v-bind 
+	(即用 v-bind 而不是 v-bind:prop-name)*/
+	/*
+	等价于
+	<todo-item
+  		v-bind:text="todo.text"
+  		v-bind:is-complete="todo.isComplete">
+  	</todo-item>
+	*/
+</script>

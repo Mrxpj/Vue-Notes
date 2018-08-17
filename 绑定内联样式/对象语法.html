@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象语法</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app" v-bind:style="styleObject">
+		hello vue!
+	</div>
+</body>
+</html>
+<script>
+	new Vue({
+		el: '#app',
+		data: {
+			styleObject: {
+				color: 'red',
+				fontSize: '13px'
+			}
+		}
+	})
+</script>
+<!--渲染为：div里的内容color为red，fontsize为13px-->

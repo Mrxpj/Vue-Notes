@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<ul id="example1">
+		<li v-for="item in items" :key="item.id">
+			{{ item.message }}
+		</li>
+	</ul>
+</body>
+</html>
+<script>
+	var example1 = new Vue({
+  		el: '#example1',
+ 		data: {
+   		 	items: [
+      			{ message: 'Foo' },
+      			{ message: 'Bar' }
+    		]
+ 		}
+	})
+</script>

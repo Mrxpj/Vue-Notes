@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css动画</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<style>
+		.fade-enter {
+			opacity: 0
+		}
+		.fade-enter-active {  /*  监听到opacity变化，使之在2s里面完成变化 */
+			transition: opacity 2s;
+		}
+
+		.fade-leave-to {
+			opacity: 0
+		}
+		.fade-leave-active {
+			transition: opacity 2s;
+		}
+	</style>
+</head>
+<body>
+	<div id="root">
+		<transition name="fade">  <!-- 使之具有动画效果 --> 
+			<p v-if="show">hello world</p>
+		</transition>
+		<button @click="handleClick">点击</button>
+	</div>
+</body>
+</html>
+<script>
+	var root = new Vue({
+		el: '#root',
+		data: {
+			show: true
+		},
+		methods: {
+			handleClick: function() {
+				this.show = !this.show
+			}
+		}
+	})
+</script>

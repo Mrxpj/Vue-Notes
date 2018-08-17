@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-on</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="example1">
+		<button v-on:click="counter +=1">ADD 1</button>
+		<p>The button above has been clicked {{ counter }} times.</p>
+	</div>
+</body>
+</html>
+<script>
+	new Vue({
+		el: '#example1',
+		data: {
+			counter: 0
+		}
+	})
+</script>

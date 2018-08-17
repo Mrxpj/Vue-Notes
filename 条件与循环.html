@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>条件与循环</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<!--<div id="app-3">
+		<p v-if="seen">现在你看到我了</p>
+	</div>
+	-->
+	<div id="app-4">
+		<!-- <ol>
+			<li v-for="todo in todos">v-for定数组的数据来渲染一个项目列表：
+				{{ todo}}
+			</li>
+		</ol> -->
+		<todo-item v-bind:content="item"
+				   v-bind:index="index" 
+				   v-for="(item,index) in todos"
+				   @delete="handleItemDelete"><!-- 监听子组件delete事件 index表示数组下标 -->
+		</todo-item>
+	</div>
+</body>
+</html>
+<script>
+	var app3 = new Vue({
+		el: '#app-3',
+		data:{
+			seen:true//将true改为false的话，之前显示的消息将会消失
+		}
+	})
+
+	var TodoItem = {
+		props:['content','index'],
+		template: "<li @click='handleItemClick'>{{content}}</li>",
+		methods: {
+			handleItemClick: function() {
+				this.$emit("delete",this.index) //向外触发事件,同时将index传给父组件
+			}
+		}
+	}
+	var app4 = new Vue({
+		el:'#app-4',
+		components: {
+			TodoItem: TodoItem
+		},
+		data:{
+			todos:[
+				{ text:'学习javascript'},
+				{ text:'学习java'},
+				{ text:'学习script'}
+			]
+		},
+		methods: {
+			handleItemDelete: function(index) { //接受从子组件传过来的参数
+				this.todos.splice(index,1) //从下表为index开始，删除一项
+			}
+		}
+
+	})
+
+</script>

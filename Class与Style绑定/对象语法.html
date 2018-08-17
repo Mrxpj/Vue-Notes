@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象语法</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app-1" class="static" v-bind:class="{active:isActive, 'text-danger':hasError}"></div>
+	<div id="app-2" class="static" v-bind:class="classObject"></div>
+	<div id="app-3" class="static" v-bind:class="classObject1"></div>
+</body>
+</html>
+<script>
+	var app1 = new Vue ({
+		el: '#app-1',
+		data: {
+			isActive:true,
+			hasError:false
+		}
+	})
+
+	var app2 = new Vue({
+		el: '#app-2',
+		data: {
+			classObject: {
+				active: true,
+				'text-danger': false
+			}
+		}
+	})
+
+	var app3 = new Vue({
+		el: '#app-3',
+		data: {
+			isActive: true,
+			error: null
+		},
+		computed: {
+			classObject1: function(){
+				return {
+					active: this.isActive && !this.error,'text-danger': this.error && this.error.type ===fatal
+				}
+			}
+		}
+	})
+	//结果class列表变为“static active”。app1与app2,app3结果一样,不同的是app3绑定了一个返回对象的计算属性computed(app3强大而常用的模式)
+</script>
+<!--
+	当isActive或者hasError变化时，class列表将相应的更新，例如，如果hasError的值为true，class列表将变为“static active text-danger”。
+-->

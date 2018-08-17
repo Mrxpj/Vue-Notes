@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>内置组件</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<my-header></my-header>
+	</div>
+</body>
+</html>
+<script>
+	var myHeaderChild = {
+		template:'<p>i am my header child</p>'
+	}
+
+	var myHeader = {
+		template:'<p><my-header-child></my-header-child>this {{}} is my header</p>',
+		components:{
+			'my-header-child':myHeaderChild
+		}
+	}
+	new Vue({
+		el:'#app',
+		data:{
+			word:'hello world'
+		},
+		components: {
+			'my-header': myHeader
+		}
+	})
+</script>

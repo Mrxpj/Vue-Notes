@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用在组建上</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<my-component class="baz boo"></my-component>
+	</div>
+</body>
+</html>
+<script>
+	Vue.component('my-component',{
+		template: '<p class="foo bar">Hi</p>'
+	})
+	new Vue({
+		el: '#app'
+	})
+</script>
+<!--渲染为<p class="foo bar baz boo">Hi</p>
+对于带数据绑定 class 也同样适用：
+<my-component v-bind:class="{ active: isActive }"></my-component>
+当 isActive 为 truthy[1] 时，HTML 将被渲染成为：
+<p class="foo bar active">Hi</p>
+-->

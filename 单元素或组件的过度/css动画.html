@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css动画</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<style>
+		.bounce-enter-active {
+ 			animation: bounce-in .5s;
+		}
+		.bounce-leave-active {
+ 			animation: bounce-in .5s reverse;
+		}
+		@keyframes bounce-in {
+		  	0% {
+		   	 transform: scale(0);
+		  }
+		  50% {
+		    transform: scale(1.5);
+		  }
+		  100% {
+		    transform: scale(1);
+		  }
+		}
+	</style>
+</head>
+<body>
+	<div id="example">
+  		<button @click="show = !show">Toggle show</button>
+  		<transition name="bounce">
+    		<p v-if="show">Lorem ipsum dolor sit amet</p>
+  		</transition>
+</div>
+</body>
+</html>
+<script>
+	new Vue({
+		el: '#example',
+		data: {
+			show: true
+		}
+	})
+</script>

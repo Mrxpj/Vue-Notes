@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="example1">
+		<input type="checkbox" v-model="toggle"
+		true-value="yes" false-value="no">
+		{{ toggle }}
+	</div>
+	<!-- // 当选中时vm.toggle === 'yes'// 当没有选中时vm.toggle === 'no' -->
+	<br>
+	<div id="example2">
+		<input type="radio" v-model="pick" v-bind:value="a">
+		{{ pick }}
+	</div>
+	<!-- // 当选中时vm.pick === vm.a -->
+	<br>
+	<div id="example3">
+		<select v-model="selected">
+    <!-- 内联对象字面量 -->
+  		<option v-bind:value="{ number: 123 }">123</option>
+		</select>
+		<span>selected: {{ (typeof selected)}}</span>
+	</div>
+	<!-- // 当选中时typeof vm.selected // => 'object'vm.selected.number // => 123 -->
+</body>
+</html>
+<script>
+	new Vue({
+		el: '#example1',
+		data: {
+			toggle: ''
+		}
+	})
+
+	new Vue({
+		el: '#example2',
+		data: {
+			pick: '',
+			a: 'abc'
+		}
+	})
+
+	new Vue({
+		el: '#example3',
+		data: {
+			selected: ''
+		}
+	})
+</script>

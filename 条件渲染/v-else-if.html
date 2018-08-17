@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-else-if</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<div v-if="type === 'A'">
+  			A
+		</div>
+		<div v-else-if="type === 'B'">
+ 			B
+		</div>
+		<div v-else-if="type === 'C'">
+ 	 		C
+		</div>
+		<div v-else>
+  			Not A/B/C
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	new Vue({
+		el: '#app'
+	})
+</script>

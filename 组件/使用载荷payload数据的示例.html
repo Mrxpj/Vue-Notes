@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-on</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="message-event-example" class="demo">
+		<p v-for="msg in message">{{ msg }}</p>
+		<button-message v-on:message="handleMessage"></button-message>
+	</div>
+</body>
+</html>
+<script>
+	Vue.component('button-message', {
+		template: '<div> <input type="text" v-model="message" /> <button v-on:click="handleSendMessage">Send</button> </div>',
+		data: function() {
+			return {
+				message: 'test message'
+			}
+		},
+		methods: {
+			handleSendMessage: function() {
+				this.$emit('message', { message: this.message })
+			}
+		}
+	})
+
+	new Vue({
+		el: '#message-event-example',
+		data: {
+			message: []
+		},
+		methods: {
+			handleMessage: function(payload) {
+				this.message.push(payload.message)
+			}
+		}
+	})
+</script>

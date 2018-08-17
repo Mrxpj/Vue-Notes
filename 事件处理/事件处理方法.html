@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-on</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="example">
+		<button v-on:click="greet">Greet</button>
+		<!-- greet是定义的方法名 -->
+	</div>
+</body>
+</html>
+<script>
+	new Vue({
+		el: '#example',
+		data: {
+			name: 'Vue.js'
+		},
+		//在methods对象中定义方法
+		methods: {
+			greet: function(event) {
+				//this在方法里指向当前Vue实例
+				alert('Hello' + this.name + '!')
+				//event是原生DOM事件
+				if(event) {
+					alert(event.target.tagName)
+				}
+			}
+		}
+	})
+</script>

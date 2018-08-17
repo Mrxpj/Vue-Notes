@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>在template元素上使用v-if条件分组渲染</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<template v-if="ok">
+			<h1>Title</h1>
+			<p>Paragraph 1</p>
+			<p>Paragraph 2</p>
+		</template>
+</div>
+</body>
+</html>
+<script>
+	new Vue({
+		el: '#app'
+	})
+</script>
+<!--渲染结果将不包含 <template> 元素。-->

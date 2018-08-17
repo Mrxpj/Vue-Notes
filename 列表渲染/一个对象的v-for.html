@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<ul id="v-for-object" class="demo">
+  		<li v-for="(value, key, index) in object">
+   		 	{{ index }}. {{ key }}: {{ value }}
+  		</li>
+	</ul>
+</body>
+</html>
+<script>
+	new Vue({
+  		el: '#v-for-object',
+  		data: {
+   			object: {
+     			firstName: 'John',
+     			lastName: 'Doe',
+      			age: 30
+    		}
+  		}
+	})
+</script>

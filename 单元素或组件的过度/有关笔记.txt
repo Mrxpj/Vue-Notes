@@ -1,0 +1,11 @@
+transform 属性向元素应用 2D 或 3D 转换。该属性允许我们对元素进行旋转、缩放、移动或倾斜。
+transform: translateX(10px);以x轴方向平移10px
+transform: scale(num); 进行缩放
+
+transition: all .3s ease;//全部样式 1秒 缓动
+
+值 					描述
+transition-property 	        规定设置过渡效果的 CSS 属性的名称。
+transition-duration 	    	规定完成过渡效果需要多少秒或毫秒。
+transition-timing-function 	规定速度效果的速度曲线。
+transition-delay 		定义过渡效果何时开始。

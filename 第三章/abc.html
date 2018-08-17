@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<child content="Del"></child>
+		<child content="Li"></child>
+	</div>
+		
+</body>
+</html>
+<script>
+    Vue.prototype.bus = new Vue();
+	var child = {
+		data: function() {
+			return {
+				selfContent: this.content
+			}
+		},
+		props: {
+			content: String
+		},
+		template: '<div @click="handleClick">{{ selfContent }}</div>',
+		methods: {
+			handleClick: function() {
+				this.bus.$emit('change', this.selfContent)			
+			}
+		},
+		mounted: function() {
+			var this_ = this    //改变this的引用
+			this.bus.$on('change',function(msg){
+				this_.selfContent = msg;
+			})
+		}	
+	}
+
+	var app = new Vue({
+		el: '#app',
+		components: {
+			child: child
+		},
+		
+	})
+</script>

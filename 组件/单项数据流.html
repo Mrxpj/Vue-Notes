@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单项数据流</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="prop-example1">
+		<input type="text" v-model="parentMsg">
+		<br>
+		<child v-bind:my-message="parentMsg"></child>
+	</div>
+</body>
+</html>
+<script>
+	Vue.component('child',{
+		props: ['myMessage'],
+		computed: {
+			 normalizedSize: function () {
+    			return this.myMessage.trim().toLowerCase()
+ 			 }
+		},
+		template: '<span>{{ myMessage }}---{{normalizedSize}}</span>'
+	})
+	new Vue({
+		el: '#prop-example1',
+		data: {
+			parentMsg: 'Message from par'
+		}
+
+	})
+	//动态地将 prop 绑定到父组件的数据。每当父组件的数据变化时，该变化也会传导给子组件
+	/*
+	与动态prop不同的是多定义了一个计算机属性computed，从而修改子组件而不影响父组件。
+	Prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是反过来不会。
+	另外一种方法是定义一个局部变量，并用 prop 的值初始化它：
+	props: ['initialCounter'],
+		data: function () {
+  			return { counter: this.initialCounter }
+		}
+	*/
+</script>
